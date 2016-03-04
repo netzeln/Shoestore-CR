@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="container">
-            <h1>Jazztown Shoe Conglomerate</h1>
+            <h1><a href ="/">Jazztown Shoe Conglomerate</a></h1>
         </div>
         <div class="container">
             <div class="row">
@@ -23,7 +23,12 @@
                     </form>
 
                 {% if all_stores is not empty %}
-                    <h3> or select a current store to see their brands</h3>
+                <h3> or select a current store to see their brands</h3>
+                        <ul>
+                            {% for store in all_stores %}
+                                <li><a href="/store/{{store.getId}}"> {{store.getName}}</a></option>
+                            {% endfor %}
+                        </ul>
                 {% endif %}
 
                 </div>
@@ -38,6 +43,11 @@
 
                     {% if all_brands is not empty %}
                         <h3> or select a current Brand to see their stores</h3>
+                        <ul>
+                            {% for brand in all_brands %}
+                                <li><a href="/brand/{{brand.getId}}"> {{brand.getName}}</a></option>
+                            {% endfor %}
+                        </ul>
                     {% endif %}
                 </div>
             </div>

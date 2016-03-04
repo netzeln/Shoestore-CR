@@ -15,8 +15,13 @@ $DB = new PDO($server, $username, $password);
 
 
 
-class  StoreTest  extends PHPUnit_Framework_TestCase{
+class  StoreTest  extends PHPUnit_Framework_TestCase
+{
 
+    protected function tearDown()
+    {
+        Store::deleteAll();
+    }
     function testGetName()
     {
         //arrange
@@ -28,7 +33,7 @@ class  StoreTest  extends PHPUnit_Framework_TestCase{
         $result = $test_store->getName();
 
         //assert
-        $this->assertEquals($name, $result);
+        $this->assertEquals("Basie's Boots", $result);
 
     }
     function testGetId()
@@ -42,24 +47,56 @@ class  StoreTest  extends PHPUnit_Framework_TestCase{
         $result = $test_store->getId();
 
         //assert
-        $this->assertEquals($id, $result);
+        $this->assertEquals(1, $result);
 
     }
     function testSetName()
     {
         //arrange
-        $name = "Basie's Boots";
+        $name = "Basies Boots";
         $id = NULL;
         $test_store = new Store($name, $id);
 
         $new_name ="Boots by Basie";
 
         //act
-        $result = $test_store->setName($new_name);
+        $test_store->setName($new_name);
+        $result = $test_store->getName();
 
         //assert
         $this->assertEquals($new_name, $result);
 
+    }
+
+    function testSave()
+    {
+        //arrange
+        $name = "Basies Boots";
+        $id = 1;
+        $test_store = new Store($name, $id);
+
+        //act
+        $test_store->save();
+        $result = Store::getAll();
+
+        //assert
+        $this->assertEquals([$test_store], $result);
+
+    }
+
+    function testGetAll()
+    {
+        //arrange
+        $name = "Basies Boots";
+        $id = 1;
+        $test_store = new Store($name, $id);
+        $test_store->save();
+
+        //act
+        $result = Store::getAll();
+var_dump($result);
+        //assert
+        $this->assertEquals([$test_store], $result);
     }
 }
  ?>

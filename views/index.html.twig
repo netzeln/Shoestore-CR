@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+        <link rel="stylesheet" href="/css/bootstrap-theme.min.css" type="text/css">
+        <link rel="stylesheet" href="/css/styles.css" type="text/css">
+        <meta charset="utf-8">
+        <title>Jazztown Shoe Site</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Jazztown Shoe Conglomerate</h1>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                <h2>Add a New Store</h2>
+                    <form  action="/new_store" method="post">
+                        <label for="store_name">New Store Name</label>
+                        <input type="text" name="store_name" value="">
+
+                        <button type="submit" class="btn btn-warning" name="button">Add Store</button>
+                    </form>
+
+                {% if all_stores is not empty %}
+                    <h3> or select a current store to see their brands</h3>
+                {% endif %}
+
+                </div>
+                <div class="col-md-6">
+                    <h2>Add a New Brand</h2>
+                        <form  action="/new_brand" method="post">
+                            <label for="brand_name">New Brand Name</label>
+                            <input type="text" name="brand_name" value="">
+
+                            <button type="submit" class="btn btn-info" name="button">Add Brand</button>
+                        </form>
+
+                    {% if all_brands is not empty %}
+                        <h3> or select a current Brand to see their stores</h3>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+</html>

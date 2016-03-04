@@ -1,22 +1,22 @@
-# _{Application Name}_
+# _Shoestore Code Review_
 
-#### _{Brief description of application}, {Date of current version}_
+#### _Shoestore Epicodus Code Review PHP Week 4, 2016-03-04_
 
-#### By _**{List of contributors}**_
+#### By _**Nic Netzel**_
 
 ## Description
 
-_{This is a detailed description of your application. Its purpose and usage.  Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }_
+_This application lets users create shoe stores that carry shoe brands, and shoe brands carried by shoe stores_
 
 ## Setup/Installation Requirements
 
 * _Clone the Repository_
-* _in your terminal, run  "composer install"   to get silex and twig_
-* _start your php sever in the "web" folder_
-* _x _
-* _x _
+* _in your terminal, run  "composer install"   to get silex, twig and PHP Unit_
+* _open your server and mySQL_
+* _add the databases 'shoes' and 'shoes_test' to your server _
+* _open php -S localhost in the 'web' directory of the project folder _
 
-_{Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this app depends on?}_
+
 
 ## Known Bugs
 
@@ -24,18 +24,19 @@ _{Are there issues that have not yet been resolved that you want to let users kn
 
 ## Support and contact details
 
-_{Let people know what to do if they run into any issues or have questions, ideas or concerns.  Encourage them to contact you or make a contribution to the code.}_
+_Contact me via GitHub with suggestions or comments_
 
 ## Technologies Used
 
-_
 * _Composer_
 * _Twig_
 * _Silex_
 * _PHP_
+* _MySQL_
+* _apache server
 
 ### License
 
-*{Determine the license under which this application can be used.  See below for more details on licensing.}*
+*MIT Licesnse*
 
-Copyright (c) 2015 **_{List of contributors or company name}_**
+Copyright (c) 2016 **_{Nic Netzel}_**

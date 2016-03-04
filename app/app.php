@@ -33,7 +33,7 @@
 
         $all_stores = Store::getAll();
         $all_brands = Brand::getAll();
-        return $app['twig']->render("index.html.twig", array('all_stores'=> $all_stores, 'all_brands'=>$all_brands));
+      return $app['twig']->render("index.html.twig", array('all_stores'=> $all_stores, 'all_brands'=>$all_brands));
 
     });
 
@@ -44,7 +44,7 @@
         $brands = $store->brands();
         $all_stores = Store::getAll();
         $all_brands = Brand::getAll();
-        return $app['twig']->render("store.html.twig", array('all_stores'=> $all_stores, 'all_brands'=>$all_brands, "store"=>$store, 'brands'=>$brands));
+      return $app['twig']->render("store.html.twig", array('all_stores'=> $all_stores, 'all_brands'=>$all_brands, "store"=>$store, 'brands'=>$brands));
 
     });
     $app->post("/new_brand", function() use ($app){
@@ -75,7 +75,7 @@
 
         $all_stores = Store::getAll();
         $all_brands = Brand::getAll();
-        return $app['twig']->render("brand.html.twig", array('all_stores'=> $all_stores, 'all_brands'=>$all_brands, "stores"=>$stores, 'brand'=>$brand));
+      return $app['twig']->render("brand.html.twig", array('all_stores'=> $all_stores, 'all_brands'=>$all_brands, "stores"=>$stores, 'brand'=>$brand));
 
     });
 
@@ -88,7 +88,7 @@
 
         $all_stores = Store::getAll();
         $all_brands = Brand::getAll();
-        return $app['twig']->render("store.html.twig", array('all_stores'=> $all_stores, 'all_brands'=>$all_brands, "store"=>$store, 'brands'=>$brands));
+      return $app['twig']->render("store.html.twig", array('all_stores'=> $all_stores, 'all_brands'=>$all_brands, "store"=>$store, 'brands'=>$brands));
     });
 
     $app->post("/brand_in_store/{id}", function($id) use ($app){
@@ -100,7 +100,7 @@
 
         $all_stores = Store::getAll();
         $all_brands = Brand::getAll();
-        return $app['twig']->render("brand.html.twig", array('all_stores'=> $all_stores, 'all_brands'=>$all_brands, "stores"=>$stores, 'brand'=>$brand));
+      return $app['twig']->render("brand.html.twig", array('all_stores'=> $all_stores, 'all_brands'=>$all_brands, "stores"=>$stores, 'brand'=>$brand));
     });
 
     $app->patch("/update_brand/{id}", function($id) use ($app){
@@ -110,10 +110,25 @@
         $stores = $brand->stores();
         $all_stores = Store::getAll();
         $all_brands = Brand::getAll();
-        return $app['twig']->render("brand.html.twig", array('all_stores'=> $all_stores, 'all_brands'=>$all_brands, "stores"=>$stores, 'brand'=>$brand));
+      return $app['twig']->render("brand.html.twig", array('all_stores'=> $all_stores, 'all_brands'=>$all_brands, "stores"=>$stores, 'brand'=>$brand));
     });
 
+    $app->delete("/delete_store/{id}", function($id) use ($app){
+        $closing_store = Store::find($id);
+        $closing_store->delete();
+        $all_stores = Store::getAll();
+        $all_brands = Brand::getAll();
+      return $app['twig']->render("index.html.twig", array('all_stores'=> $all_stores, 'all_brands'=>$all_brands));
 
+    });
+    $app->delete("/delete_brand/{id}", function($id) use ($app){
+        $dropped_shoe = Brand::find($id);
+        $dropped_shoe->delete();
+        $all_stores = Store::getAll();
+        $all_brands = Brand::getAll();
+      return $app['twig']->render("index.html.twig", array('all_stores'=> $all_stores, 'all_brands'=>$all_brands));
+
+    });
 
     return $app;
  ?>

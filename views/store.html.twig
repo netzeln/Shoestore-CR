@@ -48,6 +48,15 @@
                                     <button type="submit" class="btn btn-info">Add Brand to this Store</button>
                                 </form>
                     {% endif %}
+
+                    <div>
+                        <h3>Close the Shop</h3>
+                        <form class="" action="/delete_store/{{store.getId}}" method="post">
+                            <input type="hidden" name="_method" value="delete">
+                            <button type="submit" class="btn btn-sm btn-danger">Shut the Doors!</button>
+
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

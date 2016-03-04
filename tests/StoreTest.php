@@ -185,7 +185,7 @@ class  StoreTest  extends PHPUnit_Framework_TestCase
         $this->assertEquals([$test_store2], $result);
     }
 
-    function addBrand($brand_id)
+    function testAddBrand()
     {
         //arrange
         $name = "Basies Boots";

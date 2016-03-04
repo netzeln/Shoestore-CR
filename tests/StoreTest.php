@@ -88,15 +88,80 @@ class  StoreTest  extends PHPUnit_Framework_TestCase
     {
         //arrange
         $name = "Basies Boots";
-        $id = 1;
+        $id = NULL;
         $test_store = new Store($name, $id);
         $test_store->save();
 
+        $name2 = "Ellingtons Elegant Footwear";
+        $id = NULL;
+        $test_store2 = new Store($name2, $id);
+        $test_store2->save();
+
         //act
         $result = Store::getAll();
-var_dump($result);
+
         //assert
-        $this->assertEquals([$test_store], $result);
+        $this->assertEquals([$test_store, $test_store2], $result);
+    }
+
+
+    function testDeleteAll()
+    {
+        //arrange
+        $name = "Basies Boots";
+        $id = NULL;
+        $test_store = new Store($name, $id);
+        $test_store->save();
+
+        $name2 = "Ellingtons Elegant Footwear";
+        $id = NULL;
+        $test_store2 = new Store($name2, $id);
+        $test_store2->save();
+
+        //act
+        Store::deleteAll();
+        $result = Store::getAll();
+
+        //assert
+        $this->assertEquals([], $result);
+    }
+
+    function testFind()
+    {
+        //arrange
+        $name = "Basies Boots";
+        $id = NULL;
+        $test_store = new Store($name, $id);
+        $test_store->save();
+
+        $name2 = "Ellingtons Elegant Footwear";
+        $id = NULL;
+        $test_store2 = new Store($name2, $id);
+        $test_store2->save();
+
+        //act
+        $result = Store::Find($test_store2->getId());
+
+        //assert
+        $this->assertEquals($test_store2, $result);
+    }
+
+    function testUpdateStore()
+    {
+
+        //arrange
+        $name = "Basies Boots";
+        $id = NULL;
+        $test_store = new Store($name, $id);
+        $test_store->save();
+
+        $new_name = "Boots by Basie";
+        //act
+        $test_store->update($new_name);
+        $result = Store::find($test_store->getId());
+        //assert
+        $this->assertEquals($new_name, $result->getName());
+
     }
 }
  ?>

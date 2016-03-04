@@ -6,6 +6,7 @@
 */
 
 require_once "src/Store.php";
+require_once "src/Brand.php";
 
 
 $server = 'mysql:host=localhost;dbname=shoes_test';
@@ -182,6 +183,56 @@ class  StoreTest  extends PHPUnit_Framework_TestCase
 
         //assert
         $this->assertEquals([$test_store2], $result);
+    }
+
+    function addBrand($brand_id)
+    {
+        //arrange
+        $name = "Basies Boots";
+        $id = NULL;
+        $test_store = new Store($name, $id);
+        $test_store->save();
+
+        $brand_name = "Straight Ahead Shoes";
+        $id2 = NULL;
+        $test_brand = new Brand($brand_name, $id2);
+        $test_brand->save();
+
+        //act
+        $test_store->addBrand($test_brand->getId());
+        $result = $test_store->brands();
+
+        //assert
+        $this->assertEquals([$test_brand], $result);
+    }
+    function testBrands()
+    {
+        //arrange
+        $name = "Basies Boots";
+        $id = NULL;
+        $test_store = new Store($name, $id);
+        $test_store->save();
+
+        $brand_name = "Straight Ahead Shoes";
+        $id2 = NULL;
+        $test_brand = new Brand($brand_name, $id2);
+        $test_brand->save();
+
+        $test_store->addBrand($test_brand->getId());
+
+        $brand_name2 = "Straight Ahead Shoes";
+        $id3 = NULL;
+        $test_brand2 = new Brand($brand_name2, $id3);
+        $test_brand2->save();
+
+        $test_store->addBrand($test_brand2->getId());
+
+        //act
+        $result = $test_store->brands();
+
+
+        //assert
+        $this->assertEquals([$test_brand, $test_brand2], $result);
     }
 }
  ?>

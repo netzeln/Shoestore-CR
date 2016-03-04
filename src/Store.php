@@ -71,4 +71,25 @@
             $GLOBALS['DB']->exec("DELETE FROM stores WHERE id = {$this->getId()};");
         }
 
+        function addBrand($brand_id){
+            $GLOBALS['DB']->exec("INSERT INTO brand_store (brand_id, store_id) VALUES ({$brand_id}, {$this->getId()});");
+        }
+
+        function brands()
+        {
+            $found_brands = $GLOBALS['DB']->query("SELECT brands.* FROM stores
+                                            JOIN brand_store ON (stores.id = brand_store.store_id)
+                                            JOIN brands ON (brand_store.brand_id = brands.id)
+                                            WHERE stores.id = {$this->getid()};");
+
+            $brands= array();
+            foreach($found_brands as $brand){
+                $name = $brand['name'];
+                $id = $brand['id'];
+                $new_brand = new Brand($name, $id);
+                array_push($brands, $new_brand);
+            }
+            return $brands;
+        }
+
 } ?>

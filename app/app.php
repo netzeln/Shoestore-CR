@@ -12,13 +12,18 @@
     $password = 'root';
     $DB = new PDO($server, $username, $password);
 
+
     // $all_stores = Store::getAll();
     // $all_brands = Brand::getAll();
+    // $app['all_stores'] = $all_stores;
+    // $app['all_brands'] = $all_brands;
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array('twig.path'=>__DIR__."/../views"
     ));
       use Symfony\Component\HttpFoundation\Request;
       Request::enableHttpMethodParameterOverride();
+
+
 
     $app->get("/", function() use ($app){
         $all_stores = Store::getAll();
